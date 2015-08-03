@@ -1,58 +1,63 @@
 @inject('countries', 'App\Http\Utils\Country')
 
 
-{{ csrf_field() }}
+
 <div class="form-group">
     <label for="street">Street:</label>
-    <input type="text" name="street" id="street" class="form-control" value="{{ old('street') }}">
+    {!!Form::text('street',old('street'),array('class' => 'form-control'))!!}
 </div>
 
 <div class="form-group">
     <label for="city">City:</label>
-    <input type="text" name="city" id="city" class="form-control" value="{{ old('city') }}">
+    {!!Form::text('city',old('city'),array('class' => 'form-control'))!!}
 </div>
 
 <div class="form-group">
     <label for="zip">Zip/Postal Code:</label>
-    <input type="text" name="zip" id="zip" class="form-control" value="{{ old('zip') }}">
+    {!!Form::text('zip',old('zip'),array('class' => 'form-control'))!!}
 </div>
 
 <div class="form-group">
     <label for="country">Country:</label>
-    <select id="country" class="form-control">
+    <select name="country" id="country" class="form-control">
         @foreach($countries::all() as $name => $code)
-
-            <option value="{{$code}}">{{$name}}</option>
+            @if(isset($flyer) && $flyer->country ==$code)
+                <option value="{{$code}}" selected>{{$name}}</option>
+            @else
+                <option value="{{$code}}">{{$name}}</option>
+            @endif
 
         @endforeach
 
     </select>
+
 </div>
 
 <div class="form-group">
     <label for="state">State:</label>
-    <input type="text" name="state" id="state" class="form-control" value="{{ old('state') }}">
+    {!!Form::text('state',old('state'),array('class' => 'form-control'))!!}
 </div>
 
 <hr>
 <div class="form-group">
     <label for="price">Sale price:</label>
-    <input type="text" name="price" id="price" class="form-control" value="{{ old('price') }}">
+    {!!Form::text('price',old('price'),array('class' => 'form-control'))!!}
 </div>
 
 <div class="form-group">
     <label for="description">Home description:</label>
-            <textarea type="text" name="description" id="description" class="form-control" rows="10">
-                {{ old('street') }}
-            </textarea>
+    {!!Form::textArea('description',old('description'),array('class' => 'form-control','rows' =>10))!!}
 </div>
 
 <div class="form-group">
     <label for="photos">Photos:</label>
-    <input type="file" name="photos" id="photos" class="form-control input-file" value="{{ old('photos') }}" data-filename-placement>
+    <input multiple="true" type="file" name="photos[]" id="photos" class="form-control input-file" value="{{ old('photos') }}">
 </div>
+
 
 
 <div class="form-group">
     <button type="submit"  class="btn btn-primary">Create Flyer</button>
 </div>
+
+

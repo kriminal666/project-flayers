@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class FlyerRequest extends Request
+class PhotoRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +24,8 @@ class FlyerRequest extends Request
     public function rules()
     {
         return [
-
-            'street' => 'required',
-            'city' => 'required',
-            'zip' => 'required',
-            'country' => 'required',
-            'state' => 'required',
-            'price' => 'required',
-            'description' => 'required'
+            'flyer_id' =>'required|unsigned',
+            'path' => 'required'
         ];
     }
 }

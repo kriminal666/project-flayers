@@ -7,7 +7,15 @@
     <hr>
 
     <div class="row">
-    <form method="POST" action="/flyers" enctype="multipart/form-data" class="col-md-6">
+        <div class="col-md-6">
+    <!--<form method="POST" action="/flyers" enctype="multipart/form-data" class="col-md-6">-->
+
+
+            @if(isset($flyer))
+                {!! Form::model($flyer, array('url' =>'flyers','method' => 'PUT','files' => true)) !!}
+            @else
+                {!!Form::open(array('url' => 'flyers', 'files' => true))!!}
+            @endif
 
         @include('flyers.form')
 
@@ -22,7 +30,8 @@
         @endif
 
 
-    </form>
+        {!! Form::close() !!}
+    </div>
     </div>
 
 

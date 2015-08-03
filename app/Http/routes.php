@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('pages.home');
 });
 
+Route::get('home', function () {
+    return redirect('/');
+});
+
 
 Route::resource('flyers', 'FlayersController');
 

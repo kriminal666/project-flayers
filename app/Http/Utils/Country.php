@@ -8,6 +8,9 @@
 
 class Country {
 
+    /**
+     * @var array
+     */
     protected static $countries=[
         "United States"                                => "us",
         "Afghanistan"                                  => "af",
@@ -250,6 +253,9 @@ class Country {
         "Zimbabwe"                                     => "zw"
     ];
 
+    /**
+     * @return array
+     */
     public static function all()
     {
 
@@ -258,5 +264,19 @@ class Country {
     }
 
 
+    /**
+     * @param $flyers
+     * @return mixed
+     */
+    public static function getCountryNames($flyers)
+    {
+        foreach($flyers as $flyer)
+        {
+            $value = array_search($flyer->country,static::$countries);
+            $flyer->country = $value;
+        }
+
+        return $flyers;
+    }
 
 }

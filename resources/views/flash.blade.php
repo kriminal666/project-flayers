@@ -21,9 +21,10 @@
             title: "{{session('flash_message_overlay.title')}}",
             text: "{{session('flash_message_overlay.message')}}",
             type: "{{session('flash_message_overlay.level')}}",
-            confirmButtonText:  'Okay',
+            confirmButtonText:  'Okay'
         });
     </script>
 
 
 @endif
+

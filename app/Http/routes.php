@@ -22,3 +22,7 @@ Route::get('home', function () {
 
 Route::resource('flyers', 'FlayersController');
 
+Route::get('{zip}/{street}', 'FlayersController@show');
+
+Route::post('{zip}/{street}/photos', 'FlayersController@addPhoto');
+

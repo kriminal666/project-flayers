@@ -49,15 +49,20 @@
     {!!Form::textArea('description',old('description'),array('class' => 'form-control','rows' =>10))!!}
 </div>
 
-<div class="form-group">
-    <label for="photos">Photos:</label>
-    <input multiple="true" type="file" name="photos[]" id="photos" class="form-control input-file" value="{{ old('photos') }}">
-</div>
 
 
 
 <div class="form-group">
-    <button type="submit"  class="btn btn-primary">Create Flyer</button>
+    @if(isset($flyer))
+        {!!Form::hidden('id',$flyer->id)!!}
+        <button type="submit"  class="btn btn-primary">Update Flyer</button>
+
+    @else
+
+        <button type="submit"  class="btn btn-primary">Create Flyer</button>
+
+    @endif
+
 </div>
 
 

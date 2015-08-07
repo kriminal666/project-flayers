@@ -8,11 +8,10 @@
 
     <div class="row">
         <div class="col-md-6">
-    <!--<form method="POST" action="/flyers" enctype="multipart/form-data" class="col-md-6">-->
 
 
             @if(isset($flyer))
-                {!! Form::model($flyer, array('url' =>'flyers','method' => 'PUT','files' => true)) !!}
+                {!! Form::model($flyer, array('action' =>'FlayersController@update','method' => 'put','files' => true)) !!}
             @else
                 {!!Form::open(array('url' => 'flyers', 'files' => true))!!}
             @endif

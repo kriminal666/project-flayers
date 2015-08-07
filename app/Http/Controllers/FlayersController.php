@@ -24,7 +24,7 @@ class FlayersController extends Controller
     {
 
 
-        $flyers = Flyer::with('photos')->get();
+        $flyers = Flyer::all();
 
 
         return View('flyers.show', array('flyers' => Country::getCountryNames($flyers)));
@@ -51,15 +51,30 @@ class FlayersController extends Controller
 
         $flyer = Flyer::create($request->all());
 
-        foreach($request->photos as $photo)
-        {
-            $this->storeImages($photo, $flyer->id);
-        }
-
-
         flash()->success('Success', 'your flyer has been created');
 
-        return back();
+        return Redirect::to(url('/' . $flyer->zip . '/' . $flyer->street));
+
+    }
+
+    public function addPhoto($zip, $street, Request $request)
+    {
+        $this->validate($request, [
+            'photo' => 'required | mimes:jpg,jpeg,png,bmp'
+        ]);
+
+        $file = $request->file('photo');
+
+        $name = time() . $file->getClientOriginalName();
+
+        $path = 'images/home_pics/';
+
+        $file->move($path, $name);
+
+        $flyer = Flyer::locatedAt($zip, $street);
+
+        $flyer->photos()->create(['path' => '/'.$path . $name]);
+
 
     }
 
@@ -70,14 +85,14 @@ class FlayersController extends Controller
     public function storeImages(UploadedFile $photo, $id)
     {
 
-            $filename = time() . $photo->getClientOriginalName();
-            $path = public_path('images/home_pics');
-            $photo->move($path, $filename);
+        $filename = time() . $photo->getClientOriginalName();
+        $path = public_path('images/home_pics');
+        $photo->move($path, $filename);
 
-            $image = new Photo();
-            $image->flyer_id = $id;
-            $image->path = $filename;
-            $image->save();
+        $image = new Photo();
+        $image->flyer_id = $id;
+        $image->path = $filename;
+        $image->save();
 
 
     }
@@ -85,14 +100,20 @@ class FlayersController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param $zip
+     * @param $street
      * @return Response
+     * @internal param int $id
      */
-    public function show($id)
+    public function show($zip, $street)
     {
 
+        $flyer = Flyer::locatedAt($zip, $street);
+
+        return view('flyers.show_one', compact('flyer'));
 
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -102,23 +123,29 @@ class FlayersController extends Controller
      */
     public function edit($id)
     {
-        $flyer = Flyer::whereId($id)->with('photos')->first();
+        $flyer = Flyer::whereId($id)->first();
 
-        View::make('flyers.create',array('flyer' =>$flyer));
+        View::make('flyers.create', array('flyer' => $flyer));
 
-        return View('flyers.create', array('flyer' =>$flyer));
+        return View('flyers.create', array('flyer' => $flyer));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  Request $request
-     * @param  int $id
+     * @param FlyerRequest|Request $request
      * @return Response
+     * @internal param int $id
      */
-    public function update(Request $request, $id)
+    public function update(FlyerRequest $request)
     {
-        //
+
+        $flyer = Flyer::whereId($request->id)->first();
+        $flyer->fill($request->all());
+        $flyer->save();
+        flash()->success('Success', 'your flyer has been updated');
+        return Redirect::to(url('/' . $flyer->zip . '/' . $flyer->street));
+
     }
 
     /**

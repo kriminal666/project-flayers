@@ -9,6 +9,10 @@ class Photo extends Model
 
     protected $table = 'flyer_photos';
 
+    protected $fillable = [
+        'path'
+    ];
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

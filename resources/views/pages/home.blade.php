@@ -13,7 +13,7 @@
         <a href="{{route('flyers.index')}}"  class="btn btn-primary">Show all Flayers</a>
     </div>
 
-<
+
 
 
 

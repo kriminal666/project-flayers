@@ -29,7 +29,7 @@
 @stop
 
 @section('footer.scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/dropzone.js"></script>
+    <script src="/js/dropzone.js"></script>
     <script>
         Dropzone.options.addPhotosForm = {
 

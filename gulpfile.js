@@ -17,10 +17,21 @@ elixir(function(mix) {
 
             'libs/sweetalert-dev.js'
         ], './public/js/libs.js')
+
+        .scripts([
+
+            'libs/dropzone.js'
+        ], './public/js/dropzone.js')
+
         .styles([
 
             'libs/sweetalert.css'
-        ], './public/css/libs.css');
+        ], './public/css/libs.css')
+
+        .styles([
+
+            'libs/dropzone.css'
+        ], './public/css/dropzone.css');
 
 
 });

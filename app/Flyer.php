@@ -40,6 +40,14 @@ class Flyer extends Model
 
 
     /**
+     * @param Photo $photo
+     * @return Model
+     */
+    public function addPhoto(Photo $photo)
+    {
+        return $this->photos()->save($photo);
+    }
+    /**
      * @param $zip
      * @param $street
      * @return mixed

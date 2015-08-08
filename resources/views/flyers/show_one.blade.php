@@ -21,8 +21,10 @@
 </div>
     <hr>
 <h2>Add your photos</h2>
-    {!!Form::open(array('url' => $flyer->zip.'/'.$flyer->street.'/photos', 'files' => true, 'class' => 'dropzone', 'id' => 'addPhotosForm'))!!}
+    {!!Form::open(array('route' =>array('store_photo_path', $flyer->zip, $flyer->street), 'files' => true, 'class' => 'dropzone', 'id' => 'addPhotosForm'))!!}
     {!!Form::close()!!}
+
+    <hr>
 
 @stop
 

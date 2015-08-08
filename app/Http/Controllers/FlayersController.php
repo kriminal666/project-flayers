@@ -57,23 +57,24 @@ class FlayersController extends Controller
 
     }
 
+    /**
+     * Apply photo to referenced flyer
+     *
+     * @param $zip
+     * @param $street
+     * @param Request $request
+     */
     public function addPhoto($zip, $street, Request $request)
     {
         $this->validate($request, [
             'photo' => 'required | mimes:jpg,jpeg,png,bmp'
         ]);
 
-        $file = $request->file('photo');
+        $photo = Photo::fromForm($request->file('photo'));
 
-        $name = time() . $file->getClientOriginalName();
 
-        $path = 'images/home_pics/';
+        Flyer::locatedAt($zip, $street)->addPhoto($photo);
 
-        $file->move($path, $name);
-
-        $flyer = Flyer::locatedAt($zip, $street);
-
-        $flyer->photos()->create(['path' => '/'.$path . $name]);
 
 
     }

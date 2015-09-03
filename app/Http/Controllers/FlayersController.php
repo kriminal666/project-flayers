@@ -16,6 +16,18 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class FlayersController extends Controller
 {
     /**
+     * Constructor
+     *
+     */
+    function __construct()
+    {
+
+        $this->middleware('auth', ['except' => ['show']]);
+
+    }
+
+
+    /**
      * Display a listing of the resource.
      *
      * @return Response
@@ -49,6 +61,7 @@ class FlayersController extends Controller
     public function store(FlyerRequest $request)
     {
 
+        //TODO: Set the user id
         $flyer = Flyer::create($request->all());
 
         flash()->success('Success', 'your flyer has been created');
@@ -70,12 +83,22 @@ class FlayersController extends Controller
             'photo' => 'required | mimes:jpg,jpeg,png,bmp'
         ]);
 
-        $photo = Photo::fromForm($request->file('photo'));
+        $photo = $this->makePhoto($request->file('photo'));
 
 
         Flyer::locatedAt($zip, $street)->addPhoto($photo);
 
+    }
 
+    /**
+     * @param UploadedFile $file
+     * @return $this
+     */
+    protected function makePhoto(UploadedFile $file)
+    {
+
+        return Photo::named($file->getClientOriginalName())
+            ->move($file);
 
     }
 

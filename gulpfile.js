@@ -23,6 +23,14 @@ elixir(function(mix) {
             'libs/dropzone.js'
         ], './public/js/dropzone.js')
 
+        .scripts([
+            'libs/bootstrap.js'
+        ], './public/js/bootstrap.js')
+
+        .scripts([
+            'libs/jquery-2.1.4.min.js'
+        ], './public/js/jquery-2.1.4.min.js')
+
         .styles([
 
             'libs/sweetalert.css'

@@ -7,7 +7,7 @@
     <hr>
 
     <div class="row">
-        <div class="col-md-6">
+
 
 
             @if(isset($flyer))
@@ -30,7 +30,7 @@
 
 
         {!! Form::close() !!}
-    </div>
+
     </div>
 
 

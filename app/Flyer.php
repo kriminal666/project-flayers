@@ -24,7 +24,8 @@ class Flyer extends Model
         'state',
         'country',
         'price',
-        'description'
+        'description',
+        'user_id'
         ];
 
 
@@ -59,6 +60,18 @@ class Flyer extends Model
 
         return static::where(compact('zip', 'street'))->first();
 
+    }
+
+    //Relations
+
+    /**
+     * This belongs to one user
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'user_id');
     }
 
     /**

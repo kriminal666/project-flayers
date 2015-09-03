@@ -21,7 +21,7 @@ class CreateFlyersTable extends Migration
             $table->string('country', 40);
             $table->decimal('price', 6, 2);
             $table->text('description');
-
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
     }

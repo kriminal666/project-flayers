@@ -31,6 +31,26 @@ elixir(function(mix) {
             'libs/jquery-2.1.4.min.js'
         ], './public/js/jquery-2.1.4.min.js')
 
+        .scripts([
+            'libs/blueimp-gallery.min.js'
+        ], './public/blueimp/js/blueimp-gallery.min.js')
+
+        .scripts([
+            'libs/jquery.blueimp-gallery.min.js'
+        ], './public/blueimp/js/jquery.blueimp-gallery.min.js')
+
+        .scripts([
+            'libs/bootstrap-image-gallery.min.js'
+        ], './public/blueimp/js/bootstrap-image-gallery.min.js')
+
+        .styles([
+            'libs/blueimp-gallery.min.css'
+        ], './public/blueimp/css/blueimp-gallery.min.css')
+
+        .styles([
+            'libs/bootstrap-image-gallery.min.css'
+        ], './public/blueimp/css/bootstrap-image-gallery.min.css')
+
         .styles([
 
             'libs/sweetalert.css'

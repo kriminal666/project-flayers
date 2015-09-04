@@ -8,6 +8,7 @@ use App\Http\Requests\FlyerRequest;
 use App\Http\Utils\Country;
 use App\Photo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\View;
@@ -61,8 +62,9 @@ class FlayersController extends Controller
     public function store(FlyerRequest $request)
     {
 
-        //TODO: Set the user id
-        $flyer = Flyer::create($request->all());
+        $input = array_add($request->all(), 'user_id', Auth::id());
+
+        $flyer = Flyer::create($input);
 
         flash()->success('Success', 'your flyer has been created');
 

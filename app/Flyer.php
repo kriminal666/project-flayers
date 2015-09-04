@@ -28,7 +28,6 @@ class Flyer extends Model
         'user_id'
         ];
 
-
     /**
      * Format price
      * @param $price
@@ -58,7 +57,7 @@ class Flyer extends Model
     {
         $street = str_replace('-',' ',$street);
 
-        return static::where(compact('zip', 'street'))->first();
+        return static::where(compact('zip', 'street'))->firstOrFail();
 
     }
 

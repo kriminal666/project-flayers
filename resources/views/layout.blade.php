@@ -4,9 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Project Flyer</title>
-    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="{{asset('/css/app.css')}}">
     <link rel="stylesheet" href="/css/libs.css">
     <link rel="stylesheet" href="/css/dropzone.css">
+    <link rel="stylesheet" href="/blueimp/css/blueimp-gallery.min.css">
+    <link rel="stylesheet" href="/blueimp/css/bootstrap-image-gallery.min.css">
+
 </head>
 <body>
 

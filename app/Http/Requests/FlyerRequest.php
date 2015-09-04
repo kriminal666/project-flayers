@@ -32,6 +32,7 @@ class FlyerRequest extends Request
             'state' => 'required',
             'price' => 'required',
             'description' => 'required'
+
         ];
     }
 }
